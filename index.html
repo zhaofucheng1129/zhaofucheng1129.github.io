@@ -372,7 +372,7 @@
                 
               
 
-              <time title="创建时间：2018-10-24 23:04:05 / 修改时间：23:06:54" itemprop="dateCreated datePublished" datetime="2018-10-24T23:04:05+08:00">2018-10-24</time>
+              <time title="创建时间：2018-10-24 23:04:05 / 修改时间：23:16:22" itemprop="dateCreated datePublished" datetime="2018-10-24T23:04:05+08:00">2018-10-24</time>
             
 
             
@@ -447,12 +447,13 @@
 
       
         
-          
-          正则表达式Regular Expression 即描述某种规则的表达式。
-字符组普通字符组字符组（Character Class）是一组字符，表示 “在同一个位置可能出现的各种字符”
-其写法是在一对方括号[和]之间列出所有可能出现的字符。
-12#只要字符串中包含数字、字符就可以匹配re.search
-          ...
+          <h1 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h1><p><code>Regular Expression</code> 即描述某种规则的表达式。</p>
+<h2 id="字符组"><a href="#字符组" class="headerlink" title="字符组"></a>字符组</h2><h3 id="普通字符组"><a href="#普通字符组" class="headerlink" title="普通字符组"></a>普通字符组</h3><p>字符组（<code>Character Class</code>）是一组字符，表示 “<strong>在同一个位置可能出现的各种字符</strong>”</p>
+<p>其写法是在一对方括号<code>[</code>和<code>]</code>之间列出所有可能出现的字符。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#只要字符串中包含数字、字符就可以匹配</span></span><br><span class="line">re.search(<span class="string">"[0123456789]"</span>,<span class="string">"2"</span>) != <span class="keyword">None</span>				<span class="comment">#=&gt;True</span></span><br></pre></td></tr></table></figure>
+<p>默认情况下<code>re.search(pattern,string)</code>只判断<code>string</code>的某个子串能否由<code>pattern</code>匹配，为了测试整个<code>string</code>能否被<code>pattern</code>匹配，在<code>pattern</code>两端加上<code>^</code>和 <code>$</code>。它们并不匹配任何字符，只表示“定位到字符串的起始位置”和“定位到字符串的结束位置”。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#使用^和$测试string被pattern完整匹配</span></span><br><span class="line"><span class="comment">#只要字符串中包含数字、字符就可以匹配</span></span><br><span class="line">re.search(<span class="string">"[0123456789]"</span>,<span class="string">"2"</span>) != <span class="keyword">None</span> 				<span class="comment">#=&gt;True</span></span><br><span class="line">re.search(<span class="string">"[0123456789]"</span>,<span class="string">"a2"</span>) != <span class="keyword">None</span> 				<span class="comment">#=&gt;True</span></span><br><span class="line"><span class="comment">#整个字符串就是一个数字字符，才可以匹配</span></span><br><span class="line">re.search(<span class="string">"^[0123456789]$"</span>,<span class="string">"2"</span>) != <span class="keyword">None</span>				<span class="comment">#=&gt;True</span></span><br><span class="line">re.search(<span class="string">"^[0123456789]$"</span>,<span class="string">"12"</span>) != <span class="keyword">None</span>			<span class="comment">#=&gt;False</span></span><br></pre></td></tr></table></figure>
+<p>字符组中的字符排列<strong>顺序</strong>并不影响字符组的功能，出现<strong>重复</strong>字符也不影响，但是并不推荐在字符组中出现重复字符。</p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/10/24/正则表达式/#more" rel="contents">

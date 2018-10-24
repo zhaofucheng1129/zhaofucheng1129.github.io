@@ -120,7 +120,7 @@
 <meta property="og:site_name" content="Time&#39;s Blog">
 <meta property="og:description" content="正则表达式Regular Expression 即描述某种规则的表达式。 字符组普通字符组字符组（Character Class）是一组字符，表示 “在同一个位置可能出现的各种字符” 其写法是在一对方括号[和]之间列出所有可能出现的字符。 12#只要字符串中包含数字、字符就可以匹配re.search(&quot;[0123456789]&quot;,&quot;2&quot;) != None				#=&amp;gt;True 默认情况下re">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-10-24T15:06:54.751Z">
+<meta property="og:updated_time" content="2018-10-24T15:16:22.025Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="正则表达式">
 <meta name="twitter:description" content="正则表达式Regular Expression 即描述某种规则的表达式。 字符组普通字符组字符组（Character Class）是一组字符，表示 “在同一个位置可能出现的各种字符” 其写法是在一对方括号[和]之间列出所有可能出现的字符。 12#只要字符串中包含数字、字符就可以匹配re.search(&quot;[0123456789]&quot;,&quot;2&quot;) != None				#=&amp;gt;True 默认情况下re">
@@ -369,7 +369,7 @@
                 
               
 
-              <time title="创建时间：2018-10-24 23:04:05 / 修改时间：23:06:54" itemprop="dateCreated datePublished" datetime="2018-10-24T23:04:05+08:00">2018-10-24</time>
+              <time title="创建时间：2018-10-24 23:04:05 / 修改时间：23:16:22" itemprop="dateCreated datePublished" datetime="2018-10-24T23:04:05+08:00">2018-10-24</time>
             
 
             
@@ -450,6 +450,7 @@
 <p>默认情况下<code>re.search(pattern,string)</code>只判断<code>string</code>的某个子串能否由<code>pattern</code>匹配，为了测试整个<code>string</code>能否被<code>pattern</code>匹配，在<code>pattern</code>两端加上<code>^</code>和 <code>$</code>。它们并不匹配任何字符，只表示“定位到字符串的起始位置”和“定位到字符串的结束位置”。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#使用^和$测试string被pattern完整匹配</span></span><br><span class="line"><span class="comment">#只要字符串中包含数字、字符就可以匹配</span></span><br><span class="line">re.search(<span class="string">"[0123456789]"</span>,<span class="string">"2"</span>) != <span class="keyword">None</span> 				<span class="comment">#=&gt;True</span></span><br><span class="line">re.search(<span class="string">"[0123456789]"</span>,<span class="string">"a2"</span>) != <span class="keyword">None</span> 				<span class="comment">#=&gt;True</span></span><br><span class="line"><span class="comment">#整个字符串就是一个数字字符，才可以匹配</span></span><br><span class="line">re.search(<span class="string">"^[0123456789]$"</span>,<span class="string">"2"</span>) != <span class="keyword">None</span>				<span class="comment">#=&gt;True</span></span><br><span class="line">re.search(<span class="string">"^[0123456789]$"</span>,<span class="string">"12"</span>) != <span class="keyword">None</span>			<span class="comment">#=&gt;False</span></span><br></pre></td></tr></table></figure>
 <p>字符组中的字符排列<strong>顺序</strong>并不影响字符组的功能，出现<strong>重复</strong>字符也不影响，但是并不推荐在字符组中出现重复字符。</p>
+<a id="more"></a>
 <p>例如上例中匹配数字就要把所有数字都列出来还是有些繁琐，为此正则表达式提供了<strong>范围表示法</strong>（<code>range</code>）,它更直观，能进一步简化字符组。</p>
 <p>在字符组中<code>-</code>表示范围，一般是根据字符对应的码值（<code>Code Point</code>）也就是字符在对应码表中的编码数值来确定的。小的在前，大的在后，所以<code>[0-9]</code>正确，而<code>[9-0]</code>会报错。</p>
 <p>在字符组中可以同时并列多个<code>-范围表示法</code>。</p>
