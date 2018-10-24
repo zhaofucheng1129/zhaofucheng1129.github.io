@@ -120,7 +120,7 @@
 <meta property="og:site_name" content="Time&#39;s Blog">
 <meta property="og:description" content="正则表达式Regular Expression 即描述某种规则的表达式。 字符组普通字符组字符组（Character Class）是一组字符，表示 “在同一个位置可能出现的各种字符” 其写法是在一对方括号[和]之间列出所有可能出现的字符。 12#只要字符串中包含数字、字符就可以匹配re.search(&quot;[0123456789]&quot;,&quot;2&quot;) != None				#=&amp;gt;True 默认情况下re">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-10-24T15:16:22.025Z">
+<meta property="og:updated_time" content="2018-10-24T15:28:08.465Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="正则表达式">
 <meta name="twitter:description" content="正则表达式Regular Expression 即描述某种规则的表达式。 字符组普通字符组字符组（Character Class）是一组字符，表示 “在同一个位置可能出现的各种字符” 其写法是在一对方括号[和]之间列出所有可能出现的字符。 12#只要字符串中包含数字、字符就可以匹配re.search(&quot;[0123456789]&quot;,&quot;2&quot;) != None				#=&amp;gt;True 默认情况下re">
@@ -369,7 +369,7 @@
                 
               
 
-              <time title="创建时间：2018-10-24 23:04:05 / 修改时间：23:16:22" itemprop="dateCreated datePublished" datetime="2018-10-24T23:04:05+08:00">2018-10-24</time>
+              <time title="创建时间：2018-10-24 23:04:05 / 修改时间：23:28:08" itemprop="dateCreated datePublished" datetime="2018-10-24T23:04:05+08:00">2018-10-24</time>
             
 
             
@@ -757,6 +757,8 @@
 <h3 id="转义-1"><a href="#转义-1" class="headerlink" title="转义"></a>转义</h3><p>括号的转义必须转义与括号有关的所有元字符包括<code>(</code>、<code>)</code>和<code>|</code>。因为括号非常重要，所以无论时开括号还是闭括号，只要出现，正则表达式就会尝试寻找整个括号，如果只转义了开括号而没有转义闭括号，一般会报告”括号不匹配”的错误。另外，多选结构中的<code>|</code>也必须转义。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#括号的转义</span></span><br><span class="line">re.search(<span class="string">r"^\(a\)$"</span>,<span class="string">"(a)"</span>) != <span class="keyword">None</span>							<span class="comment">#=&gt;True</span></span><br><span class="line">re.search(<span class="string">r"^\(a)$"</span>,<span class="string">"(a)"</span>) != <span class="keyword">None</span>							<span class="comment">#=&gt;报错</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#未转义|</span></span><br><span class="line">re.search(<span class="string">r"^(\(a|b\))$"</span>,<span class="string">"(a|b)"</span>) != <span class="keyword">None</span>					<span class="comment">#=&gt;False</span></span><br><span class="line">re.search(<span class="string">r"^(\(a\|b\))$"</span>,<span class="string">"(a|b)"</span>) != <span class="keyword">None</span>					<span class="comment">#=&gt;True</span></span><br></pre></td></tr></table></figure>
 <h2 id="断言"><a href="#断言" class="headerlink" title="断言"></a>断言</h2><p>正则表达式中的大多数的结构匹配的文本会出现在最终的匹配结果中，但是有些结构并不真正匹配文本，而只负责判断某个位置左/右侧的文本是否符合要求，这种结构被称为<strong>断言（assertion）</strong>。常见的断言有三类：<strong>单词边界、行起始/结束位置、环视</strong>。</p>
+<p><em>待补充</em></p>
+<p><strong>个人根据《正则指引》内容总结记录，侵删！！</strong></p>
 
       
     </div>
