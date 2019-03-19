@@ -121,16 +121,27 @@
     enable_page_level_ads: true
   });
 </script>
-  <meta name="description" content="Be yourself.Everyone else is already taken.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Time&#39;s Blog">
-<meta property="og:url" content="http://softdevblog.com/index.html">
+  <meta name="description" content="0x01、UserDefaults特点 UserDefaults是一个单利类 并且是线程安全的 数据存储在.plist文件中 一般保存首选项、少量缓存数据 不能将自定义的对象保存起来  使用123456789101112//取得单利对象let defaults = UserDefaults.standard//使用范型方法保存数据open func set(_ value: Any?, forKe">
+<meta name="keywords" content="持久化">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS的数据持久化总结">
+<meta property="og:url" content="http://softdevblog.com/2019/03/19/iOS的数据持久化总结/index.html">
 <meta property="og:site_name" content="Time&#39;s Blog">
-<meta property="og:description" content="Be yourself.Everyone else is already taken.">
+<meta property="og:description" content="0x01、UserDefaults特点 UserDefaults是一个单利类 并且是线程安全的 数据存储在.plist文件中 一般保存首选项、少量缓存数据 不能将自定义的对象保存起来  使用123456789101112//取得单利对象let defaults = UserDefaults.standard//使用范型方法保存数据open func set(_ value: Any?, forKe">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://softdevblog.com/2019/03/19/iOS的数据持久化总结/1.png">
+<meta property="og:image" content="http://softdevblog.com/2019/03/19/iOS的数据持久化总结/2.png">
+<meta property="og:image" content="http://softdevblog.com/2019/03/19/iOS的数据持久化总结/3.png">
+<meta property="og:image" content="http://softdevblog.com/屏幕快照%202019-03-19%2015.08.14.png">
+<meta property="og:image" content="http://softdevblog.com/Simulator%20Screen%20Shot%20-%20iPhone%20SE%20-%202019-03-19%20at%2015.09.42.png">
+<meta property="og:image" content="http://softdevblog.com/屏幕快照%202019-03-19%2019.19.20.png">
+<meta property="og:image" content="http://softdevblog.com/屏幕快照%202019-03-19%2016.15.52.png">
+<meta property="og:image" content="http://softdevblog.com/屏幕快照%202019-03-19%2019.40.09.png">
+<meta property="og:updated_time" content="2019-03-19T12:48:24.707Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Time&#39;s Blog">
-<meta name="twitter:description" content="Be yourself.Everyone else is already taken.">
+<meta name="twitter:title" content="iOS的数据持久化总结">
+<meta name="twitter:description" content="0x01、UserDefaults特点 UserDefaults是一个单利类 并且是线程安全的 数据存储在.plist文件中 一般保存首选项、少量缓存数据 不能将自定义的对象保存起来  使用123456789101112//取得单利对象let defaults = UserDefaults.standard//使用范型方法保存数据open func set(_ value: Any?, forKe">
+<meta name="twitter:image" content="http://softdevblog.com/2019/03/19/iOS的数据持久化总结/1.png">
 
 
 
@@ -139,7 +150,7 @@
 
 
 
-  <link rel="canonical" href="http://softdevblog.com/">
+  <link rel="canonical" href="http://softdevblog.com/2019/03/19/iOS的数据持久化总结/">
 
 
 
@@ -149,7 +160,7 @@
   };
 </script>
 
-  <title>Time's Blog</title>
+  <title>iOS的数据持久化总结 | Time's Blog</title>
   
 
 
@@ -196,8 +207,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
@@ -234,7 +244,7 @@
         
         
           
-          <li class="menu-item menu-item-home menu-item-active">
+          <li class="menu-item menu-item-home">
     <a href="/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
   </li>
@@ -318,9 +328,9 @@
           
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -352,11 +362,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/03/19/iOS的数据持久化总结/" itemprop="url">
-                  iOS的数据持久化总结
-                </a>
+          <h2 class="post-title" itemprop="name headline">iOS的数据持久化总结
               
             
           </h2>
@@ -448,9 +454,7 @@
       
 
       
-        
-          
-            <h2 id="0x01、UserDefaults"><a href="#0x01、UserDefaults" class="headerlink" title="0x01、UserDefaults"></a>0x01、UserDefaults</h2><h4 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h4><ol>
+        <h2 id="0x01、UserDefaults"><a href="#0x01、UserDefaults" class="headerlink" title="0x01、UserDefaults"></a>0x01、UserDefaults</h2><h4 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h4><ol>
 <li><code>UserDefaults</code>是一个单利类</li>
 <li>并且是<code>线程安全</code>的</li>
 <li>数据存储在.plist文件中</li>
@@ -507,8 +511,6 @@
 <h4 id="使用-5"><a href="#使用-5" class="headerlink" title="使用"></a>使用</h4><p>添加<code>CoreData.framework</code></p>
 <p>待补充。。。。</p>
 
-          
-        
       
     </div>
 
@@ -526,406 +528,56 @@
 
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://softdevblog.com/2018/11/06/基于Docker搭建LNPM环境/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Tommy">
-      <meta itemprop="description" content="Be yourself.Everyone else is already taken.">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Time's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/11/06/基于Docker搭建LNPM环境/" itemprop="url">
-                  基于Docker搭建LNPM环境
-                </a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2018-11-06 17:31:02" itemprop="dateCreated datePublished" datetime="2018-11-06T17:31:02+08:00">2018-11-06</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2018-11-07 18:38:50" itemprop="dateModified" datetime="2018-11-07T18:38:50+08:00">2018-11-07</time>
-              
-            
-          </span>
-
+        <div class="post-tags">
           
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/后端技术/" itemprop="url" rel="index"><span itemprop="name">后端技术</span></a></span>
-
-                
-                
-              
-            </span>
+            <a href="/tags/持久化/" rel="tag"># 持久化</a>
           
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/11/06/基于Docker搭建LNPM环境/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/11/06/基于Docker搭建LNPM环境/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
+      
+        <div class="post-widgets">
         
-          <!-- ![Docker](./docker.png) -->
-<h1 id="基于Docker搭建LNPM环境"><a href="#基于Docker搭建LNPM环境" class="headerlink" title="基于Docker搭建LNPM环境"></a>基于Docker搭建LNPM环境</h1><p>​    作为一只iOS前端工程师，最近对PHP产生了兴趣，我认为这不属于不务正业，作为一个程序员不应该把自己局限在一个封闭的领域当中，应该时刻保持好奇心，所以我对<code>“世界上最好的语言”</code>开始了探索～</p>
-<p>​    工欲善其事，必先利其器，首先就要搭建开发环境，由于本人不喜欢因为开发环境把自己的电脑搞得乱七八糟，乱安装一些有的没的依赖开发包，所以我选择<code>虚拟机+Docker</code>来搭建环境～</p>
-<p>​    下面我们开始：</p>
-<h2 id="Docker准备"><a href="#Docker准备" class="headerlink" title="Docker准备"></a>Docker准备</h2><p>​      我选择了完全兼容<code>Redhat</code>系统的<code>CentOS7</code>发行版<code>Linux</code>系统，下载<code>Linux</code>并且虚拟机安装系统这里就省略了，准备好<code>Linux</code>系统就可以开始安装<code>Docker</code>了。</p>
-<h3 id="删除旧版本"><a href="#删除旧版本" class="headerlink" title="删除旧版本"></a>删除旧版本</h3><p>如果以前安装过想重新安装新版本请先使用下面的命令卸载旧版本的<code>Docker</code>，第一次安装请直接到第二步</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> sudo yum remove docker \</span><br><span class="line">                  docker-client \</span><br><span class="line">                  docker-client-latest \</span><br><span class="line">                  docker-common \</span><br><span class="line">                  docker-latest \</span><br><span class="line">                  docker-latest-logrotate \</span><br><span class="line">                  docker-logrotate \</span><br><span class="line">                  docker-selinux \</span><br><span class="line">                  docker-engine-selinux \</span><br><span class="line">                  docker-engine</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/11/06/基于Docker搭建LNPM环境/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
+
+        
+
+        
+          
+          <div class="social_share">
+            
+            
+               <div id="needsharebutton-postbottom">
+                 <span class="btn">
+                    <i class="fa fa-share-alt" aria-hidden="true"></i>
+                 </span>
+               </div>
+            
           </div>
-          <!--/noindex-->
         
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://softdevblog.com/2018/10/24/正则表达式/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Tommy">
-      <meta itemprop="description" content="Be yourself.Everyone else is already taken.">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Time's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/10/24/正则表达式/" itemprop="url">
-                  正则表达式
-                </a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2018-10-24 23:04:05" itemprop="dateCreated datePublished" datetime="2018-10-24T23:04:05+08:00">2018-10-24</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2018-11-06 20:04:47" itemprop="dateModified" datetime="2018-11-06T20:04:47+08:00">2018-11-06</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/基础知识/" itemprop="url" rel="index"><span itemprop="name">基础知识</span></a></span>
-
-                
-                
-                  ，
-                
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/基础知识/通用技术/" itemprop="url" rel="index"><span itemprop="name">通用技术</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/10/24/正则表达式/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/10/24/正则表达式/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
       
       
 
       
-        
-          <img src="/2018/10/24/正则表达式/regexp.jpg" title="正则表达式">
-<p><strong>个人根据《正则指引》内容总结记录，侵删！！</strong></p>
-<p>最近看了编译原理方面的书，觉得正则表达式非常重要，在各个语言当中都有支持，所以总结了这篇文章，作为学习总结以及记录～</p>
-<h1 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h1><p><code>Regular Expression</code> 即描述某种规则的表达式。</p>
-<h2 id="字符组"><a href="#字符组" class="headerlink" title="字符组"></a>字符组</h2><h3 id="普通字符组"><a href="#普通字符组" class="headerlink" title="普通字符组"></a>普通字符组</h3><p>字符组（<code>Character Class</code>）是一组字符，表示 “<strong>在同一个位置可能出现的各种字符</strong>”</p>
-<p>其写法是在一对方括号<code>[</code>和<code>]</code>之间列出所有可能出现的字符。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#只要字符串中包含数字、字符就可以匹配</span></span><br><span class="line">re.search(<span class="string">"[0123456789]"</span>,<span class="string">"2"</span>) != <span class="keyword">None</span>				<span class="comment">#=&gt;True</span></span><br></pre></td></tr></table></figure>
-<p>默认情况下<code>re.search(pattern,string)</code>只判断<code>string</code>的某个子串能否由<code>pattern</code>匹配，为了测试整个<code>string</code>能否被<code>pattern</code>匹配，在<code>pattern</code>两端加上<code>^</code>和 <code>$</code>。它们并不匹配任何字符，只表示“定位到字符串的起始位置”和“定位到字符串的结束位置”。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#使用^和$测试string被pattern完整匹配</span></span><br><span class="line"><span class="comment">#只要字符串中包含数字、字符就可以匹配</span></span><br><span class="line">re.search(<span class="string">"[0123456789]"</span>,<span class="string">"2"</span>) != <span class="keyword">None</span> 				<span class="comment">#=&gt;True</span></span><br><span class="line">re.search(<span class="string">"[0123456789]"</span>,<span class="string">"a2"</span>) != <span class="keyword">None</span> 				<span class="comment">#=&gt;True</span></span><br><span class="line"><span class="comment">#整个字符串就是一个数字字符，才可以匹配</span></span><br><span class="line">re.search(<span class="string">"^[0123456789]$"</span>,<span class="string">"2"</span>) != <span class="keyword">None</span>				<span class="comment">#=&gt;True</span></span><br><span class="line">re.search(<span class="string">"^[0123456789]$"</span>,<span class="string">"12"</span>) != <span class="keyword">None</span>			<span class="comment">#=&gt;False</span></span><br></pre></td></tr></table></figure>
-<p>字符组中的字符排列<strong>顺序</strong>并不影响字符组的功能，出现<strong>重复</strong>字符也不影响，但是并不推荐在字符组中出现重复字符。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/10/24/正则表达式/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/11/06/基于Docker搭建LNPM环境/" rel="next" title="基于Docker搭建LNPM环境">
+                <i class="fa fa-chevron-left"></i> 基于Docker搭建LNPM环境
+              </a>
+            
           </div>
-          <!--/noindex-->
-        
-      
-    </div>
 
-    
+          <span class="post-nav-divider"></span>
 
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
       
 
       
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -935,14 +587,25 @@
   </article>
 
 
-    
-  </section>
-
-  
+  </div>
 
 
           </div>
           
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
 
         </div>
         
@@ -963,8 +626,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -1070,6 +742,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#0x01、UserDefaults"><span class="nav-number">1.</span> <span class="nav-text">0x01、UserDefaults</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#特点"><span class="nav-number">1.0.1.</span> <span class="nav-text">特点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用"><span class="nav-number">1.0.2.</span> <span class="nav-text">使用</span></a></li></ol></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#0x02、Settings-Bundle"><span class="nav-number">2.</span> <span class="nav-text">0x02、Settings Bundle</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#新建Bundle"><span class="nav-number">2.0.1.</span> <span class="nav-text">新建Bundle</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#按需求修改"><span class="nav-number">2.0.2.</span> <span class="nav-text">按需求修改</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#读取设置"><span class="nav-number">2.0.3.</span> <span class="nav-text">读取设置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x03、keychain"><span class="nav-number">3.</span> <span class="nav-text">0x03、keychain</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#特点-1"><span class="nav-number">3.0.1.</span> <span class="nav-text">特点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用-1"><span class="nav-number">3.0.2.</span> <span class="nav-text">使用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x04、Plist"><span class="nav-number">4.</span> <span class="nav-text">0x04、Plist</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#特点-2"><span class="nav-number">4.0.1.</span> <span class="nav-text">特点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用-2"><span class="nav-number">4.0.2.</span> <span class="nav-text">使用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x05、归档"><span class="nav-number">5.</span> <span class="nav-text">0x05、归档</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#特点："><span class="nav-number">5.0.1.</span> <span class="nav-text">特点：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用-3"><span class="nav-number">5.0.2.</span> <span class="nav-text">使用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x06、文件"><span class="nav-number">6.</span> <span class="nav-text">0x06、文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x07、sqlite3"><span class="nav-number">7.</span> <span class="nav-text">0x07、sqlite3</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#特点-3"><span class="nav-number">7.0.1.</span> <span class="nav-text">特点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用-4"><span class="nav-number">7.0.2.</span> <span class="nav-text">使用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x08、Core-Data"><span class="nav-number">8.</span> <span class="nav-text">0x08、Core Data</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#特点-4"><span class="nav-number">8.0.1.</span> <span class="nav-text">特点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用-5"><span class="nav-number">8.0.2.</span> <span class="nav-text">使用</span></a></li></ol></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -1208,6 +896,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.2"></script>
+
+
 
   
 
@@ -1222,6 +914,23 @@
     <script id="dsq-count-scr" src="https://SoftDevBlog.disqus.com/count.js" async></script>
   
 
+  
+    <script type="text/javascript">
+      var disqus_config = function () {
+        this.page.url = 'http://softdevblog.com/2019/03/19/iOS的数据持久化总结/';
+        this.page.identifier = '2019/03/19/iOS的数据持久化总结/';
+        this.page.title = 'iOS的数据持久化总结';
+        };
+      function loadComments () {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://SoftDevBlog.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      }
+      
+        loadComments();
+      
+    </script>
   
 
 
