@@ -335,6 +335,172 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://softdevblog.com/2019/05/05/iOS-Audio-Unit-实践/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Tommy">
+      <meta itemprop="description" content="Be yourself.Everyone else is already taken.">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Time's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/05/05/iOS-Audio-Unit-实践/" itemprop="url">
+                  iOS Audio Unit 实践
+                </a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-05-05 05:21:23 / 修改时间：05:25:09" itemprop="dateCreated datePublished" datetime="2019-05-05T05:21:23+08:00">2019-05-05</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/05/05/iOS-Audio-Unit-实践/#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/05/05/iOS-Audio-Unit-实践/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>在iOS平台上，所有的音频框架都是基于AudioUnit实现的，使用AudioUnit会给你带来最大的自由度。</p>
+<p><img src="https://developer.apple.com/library/archive/documentation/MusicAudio/Conceptual/AudioUnitHostingGuide_iOS/Art/Audio_frameworks_2x.png" alt="iOS平台音频框架层次图"></p>
+<h2 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h2><ul>
+<li>Simultaneous audio I/O (input and output) with low latency, such as for a VoIP (Voice over Internet Protocol) application</li>
+<li>低延迟的音频I/O场景，比如VoIP（俗称网络电话）</li>
+<li>Responsive playback of synthesized sounds, such as for musical games or synthesized musical instruments</li>
+<li>多路声音合成回放，比如游戏、音乐合成器</li>
+<li>Use of a specific audio unit feature such as acoustic echo cancelation, mixing, or tonal equalization</li>
+<li>使用AudioUnit特有功能，比如回声消除、混合、均衡器等</li>
+<li>A processing-chain architecture that lets you assemble audio processing modules into flexible networks. This is the only audio API in iOS offering this capability.</li>
+<li>想使用音频处理模块组成一个处理链网络（一种图状的数据结构），在iOS平台中AudioUnit是唯一提供这种功能的API</li>
+</ul>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/05/05/iOS-Audio-Unit-实践/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://softdevblog.com/2019/03/19/iOS的数据持久化总结/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -398,7 +564,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-03-21 02:05:09" itemprop="dateModified" datetime="2019-03-21T02:05:09+08:00">2019-03-21</time>
+                <time title="修改时间：2019-03-21 02:10:03" itemprop="dateModified" datetime="2019-03-21T02:10:03+08:00">2019-03-21</time>
               
             
           </span>
@@ -951,7 +1117,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">3</span>
+                    <span class="site-state-item-count">4</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
