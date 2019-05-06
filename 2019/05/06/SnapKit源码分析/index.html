@@ -129,7 +129,7 @@
 <meta property="og:site_name" content="Time&#39;s Blog">
 <meta property="og:description" content="官方Github说明上的实例代码如下： 1234567891011121314151617import SnapKitclass MyViewController: UIViewController &amp;#123;    lazy var box = UIView()    override func viewDidLoad() &amp;#123;        super.viewDidLoad()">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-05-06T14:25:25.093Z">
+<meta property="og:updated_time" content="2019-05-06T14:28:35.250Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SnapKit源码分析">
 <meta name="twitter:description" content="官方Github说明上的实例代码如下： 1234567891011121314151617import SnapKitclass MyViewController: UIViewController &amp;#123;    lazy var box = UIView()    override func viewDidLoad() &amp;#123;        super.viewDidLoad()">
@@ -378,7 +378,7 @@
                 
               
 
-              <time title="创建时间：2019-05-06 22:24:39 / 修改时间：22:25:25" itemprop="dateCreated datePublished" datetime="2019-05-06T22:24:39+08:00">2019-05-06</time>
+              <time title="创建时间：2019-05-06 22:24:39 / 修改时间：22:28:35" itemprop="dateCreated datePublished" datetime="2019-05-06T22:24:39+08:00">2019-05-06</time>
             
 
             
@@ -429,6 +429,7 @@
       
         <p>官方Github说明上的实例代码如下：</p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> SnapKit</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyViewController</span>: <span class="title">UIViewController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">lazy</span> <span class="keyword">var</span> box = <span class="type">UIView</span>()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">viewDidLoad</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="keyword">super</span>.viewDidLoad()</span><br><span class="line"></span><br><span class="line">        <span class="keyword">self</span>.view.addSubview(box)</span><br><span class="line">        box.snp.makeConstraints &#123; (make) -&gt; <span class="type">Void</span> <span class="keyword">in</span></span><br><span class="line">           make.width.height.equalTo(<span class="number">50</span>)</span><br><span class="line">           make.center.equalTo(<span class="keyword">self</span>.view)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
 <h2 id="snp是什么"><a href="#snp是什么" class="headerlink" title="snp是什么"></a>snp是什么</h2><p>它定义在<code>ConstraintView+Extensions.swift</code>中，是一个对<code>ConstraintView</code>的扩展，<code>ConstraintView</code>根据对应的平台不同代表<code>UIView</code>或者<code>NSView</code></p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">#<span class="keyword">if</span> os(iOS) || os(tvOS)</span><br><span class="line">    <span class="keyword">import</span> UIKit</span><br><span class="line">#<span class="keyword">else</span></span><br><span class="line">    <span class="keyword">import</span> AppKit</span><br><span class="line">#endif</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#<span class="keyword">if</span> os(iOS) || os(tvOS)</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">typealias</span> <span class="type">ConstraintView</span> = <span class="type">UIView</span></span><br><span class="line">#<span class="keyword">else</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">typealias</span> <span class="type">ConstraintView</span> = <span class="type">NSView</span></span><br><span class="line">#endif</span><br></pre></td></tr></table></figure>
 <p>统一各平台<code>View</code>的差异性，定义了一个统一的别名。</p>
