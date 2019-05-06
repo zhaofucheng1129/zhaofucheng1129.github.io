@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.4.2" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.2">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.2">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.2">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.2" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '6.4.2',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+
+<!-- Google Adsense -->
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-4069698958015751",
+    enable_page_level_ads: true
+  });
+</script>
+  <meta name="description" content="官方Github说明上的实例代码如下： 1234567891011121314151617import SnapKitclass MyViewController: UIViewController &amp;#123;    lazy var box = UIView()    override func viewDidLoad() &amp;#123;        super.viewDidLoad()">
+<meta name="keywords" content="源码分析">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SnapKit源码分析">
+<meta property="og:url" content="http://softdevblog.com/2019/05/06/SnapKit源码分析/index.html">
+<meta property="og:site_name" content="Time&#39;s Blog">
+<meta property="og:description" content="官方Github说明上的实例代码如下： 1234567891011121314151617import SnapKitclass MyViewController: UIViewController &amp;#123;    lazy var box = UIView()    override func viewDidLoad() &amp;#123;        super.viewDidLoad()">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-05-06T14:25:25.093Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SnapKit源码分析">
+<meta name="twitter:description" content="官方Github说明上的实例代码如下： 1234567891011121314151617import SnapKitclass MyViewController: UIViewController &amp;#123;    lazy var box = UIView()    override func viewDidLoad() &amp;#123;        super.viewDidLoad()">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Time's Blog" type="application/atom+xml">
+
+
+
+
+  <link rel="canonical" href="http://softdevblog.com/2019/05/06/SnapKit源码分析/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>SnapKit源码分析 | Time's Blog</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Time's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-sitemap">
+    <a href="/sitemap.xml" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>站点地图</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-commonweal">
+    <a href="/404.html" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>公益 404</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://softdevblog.com/2019/05/06/SnapKit源码分析/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Tommy">
+      <meta itemprop="description" content="Be yourself.Everyone else is already taken.">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Time's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">SnapKit源码分析
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-05-06 22:24:39 / 修改时间：22:25:25" itemprop="dateCreated datePublished" datetime="2019-05-06T22:24:39+08:00">2019-05-06</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/05/06/SnapKit源码分析/#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/05/06/SnapKit源码分析/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>官方Github说明上的实例代码如下：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> SnapKit</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyViewController</span>: <span class="title">UIViewController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">lazy</span> <span class="keyword">var</span> box = <span class="type">UIView</span>()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">viewDidLoad</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="keyword">super</span>.viewDidLoad()</span><br><span class="line"></span><br><span class="line">        <span class="keyword">self</span>.view.addSubview(box)</span><br><span class="line">        box.snp.makeConstraints &#123; (make) -&gt; <span class="type">Void</span> <span class="keyword">in</span></span><br><span class="line">           make.width.height.equalTo(<span class="number">50</span>)</span><br><span class="line">           make.center.equalTo(<span class="keyword">self</span>.view)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="snp是什么"><a href="#snp是什么" class="headerlink" title="snp是什么"></a>snp是什么</h2><p>它定义在<code>ConstraintView+Extensions.swift</code>中，是一个对<code>ConstraintView</code>的扩展，<code>ConstraintView</code>根据对应的平台不同代表<code>UIView</code>或者<code>NSView</code></p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">#<span class="keyword">if</span> os(iOS) || os(tvOS)</span><br><span class="line">    <span class="keyword">import</span> UIKit</span><br><span class="line">#<span class="keyword">else</span></span><br><span class="line">    <span class="keyword">import</span> AppKit</span><br><span class="line">#endif</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#<span class="keyword">if</span> os(iOS) || os(tvOS)</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">typealias</span> <span class="type">ConstraintView</span> = <span class="type">UIView</span></span><br><span class="line">#<span class="keyword">else</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">typealias</span> <span class="type">ConstraintView</span> = <span class="type">NSView</span></span><br><span class="line">#endif</span><br></pre></td></tr></table></figure>
+<p>统一各平台<code>View</code>的差异性，定义了一个统一的别名。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">extension</span> <span class="title">ConstraintView</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//最初版本的方法被弃用了</span></span><br><span class="line">    <span class="meta">@available</span>(*, deprecated, message:<span class="string">"Use newer snp.* syntax."</span>)</span><br><span class="line">    <span class="keyword">var</span> snp_left: <span class="type">ConstraintItem</span> &#123; <span class="keyword">return</span> <span class="keyword">self</span>.snp.<span class="keyword">left</span> &#125;</span><br><span class="line">    ......</span><br><span class="line">    </span><br><span class="line">  	<span class="comment">//扩展了一个snp计算型属性</span></span><br><span class="line">    <span class="keyword">var</span> snp: <span class="type">ConstraintViewDSL</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="type">ConstraintViewDSL</span>(view: <span class="keyword">self</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>该扩展为<code>UIView</code>扩展了一个名叫<code>snp</code>的计算型属性，返回一个持有了<code>view</code>实例的<code>ConstraintViewDSL</code>对象，结合官方给的例子，就是持有了<code>box</code>的<code>ConstraintViewDSL</code>对象。</p>
+<h2 id="makeConstraints如何执行的"><a href="#makeConstraints如何执行的" class="headerlink" title="makeConstraints如何执行的"></a>makeConstraints如何执行的</h2><p><code>ConstraintViewDSL</code>是一个实现了<code>ConstraintAttributesDSL</code>的协议的结构体，<code>ConstraintAttributesDSL</code>协议又继承自<code>ConstraintBasicAttributesDSL</code>协议，最后继承到<code>ConstraintDSL</code>协议，完整的继承关系如下：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">protocol</span> <span class="title">ConstraintDSL</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">var</span> target: <span class="type">AnyObject</span>? &#123; <span class="keyword">get</span> &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">setLabel</span><span class="params">(<span class="number">_</span> value: String?)</span></span></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">label</span><span class="params">()</span></span> -&gt; <span class="type">String</span>?</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">protocol</span> <span class="title">ConstraintBasicAttributesDSL</span> : <span class="title">ConstraintDSL</span> </span>&#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">protocol</span> <span class="title">ConstraintAttributesDSL</span> : <span class="title">ConstraintBasicAttributesDSL</span> </span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这协议都通过<code>extension</code>定义了一些默认的方法实现首先<code>ConstraintDSL</code>实现如下：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">ConstraintDSL</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">func</span> <span class="title">setLabel</span><span class="params">(<span class="number">_</span> value: String?)</span></span> &#123;</span><br><span class="line">        objc_setAssociatedObject(<span class="keyword">self</span>.target <span class="keyword">as</span> <span class="type">Any</span>, &amp;labelKey, value, .<span class="type">OBJC_ASSOCIATION_COPY_NONATOMIC</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">func</span> <span class="title">label</span><span class="params">()</span></span> -&gt; <span class="type">String</span>? &#123;</span><br><span class="line">        <span class="keyword">return</span> objc_getAssociatedObject(<span class="keyword">self</span>.target <span class="keyword">as</span> <span class="type">Any</span>, &amp;labelKey) <span class="keyword">as</span>? <span class="type">String</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这两个方法会为我们调用<code>snp</code>的<code>view</code>添加一个标签，用于帮助我们调试，用官方例子来说，就是可以像下面这样添加一个标签：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">box.snp.setLabel(<span class="string">"box view"</span>) <span class="comment">//添加用于调试的标签信息</span></span><br></pre></td></tr></table></figure>
+<p><code>ConstraintBasicAttributesDSL</code>和<code>ConstraintAttributesDSL</code>协议都是定义了我们可以设置的属性比如<code>left</code>、<code>width</code>、<code>centerX</code>等等，不同的在于<code>ConstraintBasicAttributesDSL</code>协议中提供的属性是低版本就有的一些通用属性，而<code>ConstraintAttributesDSL</code>提供的是<code>iOS8</code>新增的属性，比如<code>lastBaseline</code>、<code>leftMargin</code>、<code>topMargin</code>等。部分代码如下：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">ConstraintBasicAttributesDSL</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// MARK: Basics</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">var</span> <span class="keyword">left</span>: <span class="type">ConstraintItem</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="type">ConstraintItem</span>(target: <span class="keyword">self</span>.target, attributes: <span class="type">ConstraintAttributes</span>.<span class="keyword">left</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">var</span> top: <span class="type">ConstraintItem</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="type">ConstraintItem</span>(target: <span class="keyword">self</span>.target, attributes: <span class="type">ConstraintAttributes</span>.top)</span><br><span class="line">    &#125; </span><br><span class="line">  	</span><br><span class="line">  	......</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">ConstraintAttributesDSL</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// MARK: Baselines</span></span><br><span class="line">    </span><br><span class="line">    <span class="meta">@available</span>(*, deprecated, message:<span class="string">"Use .lastBaseline instead"</span>)</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">var</span> baseline: <span class="type">ConstraintItem</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="type">ConstraintItem</span>(target: <span class="keyword">self</span>.target, attributes: <span class="type">ConstraintAttributes</span>.lastBaseline)</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@available</span>(iOS <span class="number">8.0</span>, <span class="type">OSX</span> <span class="number">10.11</span>, *)</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">var</span> lastBaseline: <span class="type">ConstraintItem</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="type">ConstraintItem</span>(target: <span class="keyword">self</span>.target, attributes: <span class="type">ConstraintAttributes</span>.lastBaseline)</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@available</span>(iOS <span class="number">8.0</span>, <span class="type">OSX</span> <span class="number">10.11</span>, *)</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">var</span> firstBaseline: <span class="type">ConstraintItem</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="type">ConstraintItem</span>(target: <span class="keyword">self</span>.target, attributes: <span class="type">ConstraintAttributes</span>.firstBaseline)</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// MARK: Margins</span></span><br><span class="line">    </span><br><span class="line">    <span class="meta">@available</span>(iOS <span class="number">8.0</span>, *)</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">var</span> leftMargin: <span class="type">ConstraintItem</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="type">ConstraintItem</span>(target: <span class="keyword">self</span>.target, attributes: <span class="type">ConstraintAttributes</span>.leftMargin)</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@available</span>(iOS <span class="number">8.0</span>, *)</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">var</span> topMargin: <span class="type">ConstraintItem</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="type">ConstraintItem</span>(target: <span class="keyword">self</span>.target, attributes: <span class="type">ConstraintAttributes</span>.topMargin)</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    ......</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>接下来看定义在<code>ConstraintViewDSL</code>结构体中的<code>makeConstraints</code>方法：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">func</span> <span class="title">makeConstraints</span><span class="params">(<span class="number">_</span> closure: <span class="params">(<span class="number">_</span> make: ConstraintMaker)</span></span></span> -&gt; <span class="type">Void</span>) &#123;</span><br><span class="line">  	<span class="comment">//self.view 对应官方实例中的box, closure就是我们后面写的闭包</span></span><br><span class="line">		<span class="type">ConstraintMaker</span>.makeConstraints(item: <span class="keyword">self</span>.view, closure: closure)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这个方法接收一个闭包，然后将闭包传给了<code>ConstraintMaker</code>的静态方法中，那就看看`makeConstraints静态方法做了什么：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ConstraintMaker中的静态方法</span></span><br><span class="line"><span class="keyword">internal</span> <span class="keyword">static</span> <span class="function"><span class="keyword">func</span> <span class="title">makeConstraints</span><span class="params">(item: LayoutConstraintItem, closure: <span class="params">(<span class="number">_</span> make: ConstraintMaker)</span></span></span> -&gt; <span class="type">Void</span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> constraints = prepareConstraints(item: item, closure: closure)</span><br><span class="line">    <span class="keyword">for</span> constraint <span class="keyword">in</span> constraints &#123;</span><br><span class="line">        constraint.activateIfNeeded(updatingExisting: <span class="literal">false</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里<code>LayoutConstraintItem</code>又是一个协议代码像下面这样：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//定义了一个是能被类遵守的协议</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">protocol</span> <span class="title">LayoutConstraintItem</span>: <span class="title">class</span> </span>&#123;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//还为iOS9新增的Guide也遵守了这个协议</span></span><br><span class="line"><span class="meta">@available</span>(iOS <span class="number">9.0</span>, <span class="type">OSX</span> <span class="number">10.11</span>, *)</span><br><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">ConstraintLayoutGuide</span> : <span class="title">LayoutConstraintItem</span> </span>&#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//这里为我们的UIView遵守了这个协议</span></span><br><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">ConstraintView</span> : <span class="title">LayoutConstraintItem</span> </span>&#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">LayoutConstraintItem</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 这个方法为代码布局的UIView对象关闭了Autoresizing自动创建AutoLayout约束防止约束冲突</span></span><br><span class="line">    <span class="keyword">internal</span> <span class="function"><span class="keyword">func</span> <span class="title">prepare</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">let</span> view = <span class="keyword">self</span> <span class="keyword">as</span>? <span class="type">ConstraintView</span> &#123;</span><br><span class="line">            view.translatesAutoresizingMaskIntoConstraints = <span class="literal">false</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    ......</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>再来看<code>makeConstraints</code>第一行代码所调用的代码：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">internal</span> <span class="keyword">static</span> <span class="function"><span class="keyword">func</span> <span class="title">prepareConstraints</span><span class="params">(item: LayoutConstraintItem, closure: <span class="params">(<span class="number">_</span> make: ConstraintMaker)</span></span></span> -&gt; <span class="type">Void</span>) -&gt; [<span class="type">Constraint</span>] &#123;</span><br><span class="line">  	<span class="comment">// 构造了持有UIView实例的ConstraintMaker用于收集所有约束信息</span></span><br><span class="line">    <span class="keyword">let</span> maker = <span class="type">ConstraintMaker</span>(item: item)</span><br><span class="line">  	<span class="comment">// 执行了我们闭包中写的约束代码</span></span><br><span class="line">    closure(maker)</span><br><span class="line">    <span class="keyword">var</span> constraints: [<span class="type">Constraint</span>] = []</span><br><span class="line">    <span class="keyword">for</span> description <span class="keyword">in</span> maker.descriptions &#123;</span><br><span class="line">        <span class="keyword">guard</span> <span class="keyword">let</span> constraint = description.constraint <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">continue</span></span><br><span class="line">        &#125;</span><br><span class="line">        constraints.append(constraint)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> constraints</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这个方法就是实际调用闭包的地方，首先将我们的<code>View</code>构造了<code>ConstraintMaker</code>对象：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">internal</span> <span class="keyword">init</span>(item: <span class="type">LayoutConstraintItem</span>) &#123;</span><br><span class="line">  	<span class="comment">// 首先持有了UIView对象</span></span><br><span class="line">    <span class="keyword">self</span>.item = item</span><br><span class="line">    <span class="comment">// 接着调用了LayoutConstraintItem扩展的prepare()方法 避免了AutoLayout约束冲突</span></span><br><span class="line">    <span class="keyword">self</span>.item.prepare()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>接着就调用了我们传进来的闭包<code>closure(maker)</code>,将刚才的<code>ConstraintMaker</code>传进去了，所以我们才能使用闭包中的<code>maker</code>设置各种约束。</p>
+<h3 id="链式调用的实现"><a href="#链式调用的实现" class="headerlink" title="链式调用的实现"></a>链式调用的实现</h3><p>看看<code>ConstraintMaker</code>代码：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ConstraintMaker</span> </span>&#123;</span><br><span class="line">    <span class="comment">///删除了一些属性，只保留两个有代表性的</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">var</span> width: <span class="type">ConstraintMakerExtendable</span> &#123;</span><br><span class="line">      	<span class="comment">//调用一个方法包装系统属性</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">self</span>.makeExtendableWithAttributes(.width)</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">var</span> height: <span class="type">ConstraintMakerExtendable</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">self</span>.makeExtendableWithAttributes(.height)</span><br><span class="line">    &#125;</span><br><span class="line">  </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">let</span> item: <span class="type">LayoutConstraintItem</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">var</span> descriptions = [<span class="type">ConstraintDescription</span>]()</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">internal</span> <span class="keyword">init</span>(item: <span class="type">LayoutConstraintItem</span>) &#123;</span><br><span class="line">        <span class="keyword">self</span>.item = item</span><br><span class="line">        <span class="keyword">self</span>.item.prepare()</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//包装系统的约束属性</span></span><br><span class="line">    <span class="keyword">internal</span> <span class="function"><span class="keyword">func</span> <span class="title">makeExtendableWithAttributes</span><span class="params">(<span class="number">_</span> attributes: ConstraintAttributes)</span></span> -&gt; <span class="type">ConstraintMakerExtendable</span> &#123;</span><br><span class="line">        <span class="comment">// ConstraintDescription这个类记录一条约束的完整信息，目前可能还不完整但是稍后会通过ConstraintMakerExtendable类的操作补全信息</span></span><br><span class="line">        <span class="keyword">let</span> description = <span class="type">ConstraintDescription</span>(item: <span class="keyword">self</span>.item, attributes: attributes)</span><br><span class="line">      	<span class="comment">// 将约束信息保存到一个数组中，因为一个对象有多条约束信息</span></span><br><span class="line">        <span class="keyword">self</span>.descriptions.append(description)</span><br><span class="line">      	<span class="comment">// 返回给外部使用用于继续设置约束信息</span></span><br><span class="line">        <span class="keyword">return</span> <span class="type">ConstraintMakerExtendable</span>(description)</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">internal</span> <span class="keyword">static</span> <span class="function"><span class="keyword">func</span> <span class="title">prepareConstraints</span><span class="params">(item: LayoutConstraintItem, closure: <span class="params">(<span class="number">_</span> make: ConstraintMaker)</span></span></span> -&gt; <span class="type">Void</span>) -&gt; [<span class="type">Constraint</span>] &#123;</span><br><span class="line">        <span class="keyword">let</span> maker = <span class="type">ConstraintMaker</span>(item: item)</span><br><span class="line">        closure(maker)</span><br><span class="line">        <span class="keyword">var</span> constraints: [<span class="type">Constraint</span>] = []</span><br><span class="line">        <span class="keyword">for</span> description <span class="keyword">in</span> maker.descriptions &#123;</span><br><span class="line">            <span class="keyword">guard</span> <span class="keyword">let</span> constraint = description.constraint <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line">            &#125;</span><br><span class="line">            constraints.append(constraint)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> constraints</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">internal</span> <span class="keyword">static</span> <span class="function"><span class="keyword">func</span> <span class="title">makeConstraints</span><span class="params">(item: LayoutConstraintItem, closure: <span class="params">(<span class="number">_</span> make: ConstraintMaker)</span></span></span> -&gt; <span class="type">Void</span>) &#123;</span><br><span class="line">        <span class="keyword">let</span> constraints = prepareConstraints(item: item, closure: closure)</span><br><span class="line">        <span class="keyword">for</span> constraint <span class="keyword">in</span> constraints &#123;</span><br><span class="line">            constraint.activateIfNeeded(updatingExisting: <span class="literal">false</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>由于每个属性都返回<code>ConstraintMakerExtendable</code>对象所以他们可以链式的调用设置属性的值，</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 这个对象用于设置约束的关系 具体实现篇幅关系 省略了</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ConstraintMakerRelatable</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">internal</span> <span class="keyword">let</span> description: <span class="type">ConstraintDescription</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">internal</span> <span class="keyword">init</span>(<span class="number">_</span> description: <span class="type">ConstraintDescription</span>) &#123;</span><br><span class="line">        <span class="keyword">self</span>.description = description</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">internal</span> <span class="function"><span class="keyword">func</span> <span class="title">relatedTo</span><span class="params">(<span class="number">_</span> other: ConstraintRelatableTarget, relation: ConstraintRelation, file: String, line: UInt)</span></span> -&gt; <span class="type">ConstraintMakerEditable</span> &#123;</span><br><span class="line">        ......</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    @discardableResult</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">func</span> <span class="title">equalTo</span><span class="params">(<span class="number">_</span> other: ConstraintRelatableTarget, <span class="number">_</span> file: String = #file, <span class="number">_</span> line: UInt = #line)</span></span> -&gt; <span class="type">ConstraintMakerEditable</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">self</span>.relatedTo(other, relation: .<span class="built_in">equal</span>, file: file, line: line)</span><br><span class="line">    &#125;</span><br><span class="line">    ......</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 这个对象主要是用于合并属性 合并属性用的是OptionSet的重在操作符</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ConstraintMakerExtendable</span>: <span class="title">ConstraintMakerRelatable</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">var</span> <span class="keyword">left</span>: <span class="type">ConstraintMakerExtendable</span> &#123;</span><br><span class="line">        <span class="keyword">self</span>.description.attributes += .<span class="keyword">left</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">self</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">var</span> top: <span class="type">ConstraintMakerExtendable</span> &#123;</span><br><span class="line">        <span class="keyword">self</span>.description.attributes += .top</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">self</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    ......</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>由于每个操作都返回<code>ConstraintMakerExtendable</code>对象，所以链式调用就实现了</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">internal</span> <span class="keyword">let</span> description: <span class="type">ConstraintDescription</span></span><br></pre></td></tr></table></figure>
+<p>并且最后都操作在了<code>description</code>这个内部属性上，所以每一步的操作组合成了一条完整的约束所需要的信息。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> description <span class="keyword">in</span> maker.descriptions &#123;</span><br><span class="line">    <span class="comment">// 这里取得每一个约束的描述对象构造了Constraint对象，这类里面实际构造了系统的AutoLayout约束对象和约束相关的操作，还记录了一些调试信息，因为Constraint的构造过程是可为空的所以这里判断非空才加到数组中</span></span><br><span class="line">    <span class="keyword">guard</span> <span class="keyword">let</span> constraint = description.constraint <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">continue</span></span><br><span class="line">    &#125;</span><br><span class="line">    constraints.append(constraint)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="启用约束"><a href="#启用约束" class="headerlink" title="启用约束"></a>启用约束</h3><p>所以经过<code>closure(maker)</code>这么一句短短的调用，所有的约束信息就都被收集在<code>[ConstraintDescription]</code>数组中，所以下面的操作就是取出一条条的约束并且设置启用。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> constraint <span class="keyword">in</span> constraints &#123;</span><br><span class="line">    constraint.activateIfNeeded(updatingExisting: <span class="literal">false</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>下面就是<code>Constraint</code>关于启用约束的代码，简单看一下实现<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">internal</span> <span class="function"><span class="keyword">func</span> <span class="title">activateIfNeeded</span><span class="params">(updatingExisting: Bool = <span class="literal">false</span>)</span></span> &#123;</span><br><span class="line">  	<span class="comment">//首先判断这个</span></span><br><span class="line">    <span class="keyword">guard</span> <span class="keyword">let</span> item = <span class="keyword">self</span>.from.layoutConstraintItem <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"WARNING: SnapKit failed to get from item from constraint. Activate will be a no-op."</span>)</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//我们在闭包中像make.width.height.equalTo(50)这种组合设置的约束在Constraint内部构造系统约束时都会分开构造，所以这里用数组存储</span></span><br><span class="line">    <span class="keyword">let</span> layoutConstraints = <span class="keyword">self</span>.layoutConstraints</span><br><span class="line">		</span><br><span class="line">    <span class="comment">//外部传递的参数 是否更新以存在的约束 对于makeConstraints方法 传递的是false</span></span><br><span class="line">    <span class="keyword">if</span> updatingExisting &#123;</span><br><span class="line">        <span class="comment">//这里先记录View上已经存在的约束信息</span></span><br><span class="line">        <span class="keyword">var</span> existingLayoutConstraints: [<span class="type">LayoutConstraint</span>] = []</span><br><span class="line">        <span class="keyword">for</span> constraint <span class="keyword">in</span> item.constraints &#123;</span><br><span class="line">            existingLayoutConstraints += constraint.layoutConstraints</span><br><span class="line">        &#125;</span><br><span class="line">				<span class="comment">//循环将要设置的约束信息</span></span><br><span class="line">        <span class="keyword">for</span> layoutConstraint <span class="keyword">in</span> layoutConstraints &#123;</span><br><span class="line">            <span class="comment">//取出第一个重复的约束</span></span><br><span class="line">            <span class="keyword">let</span> existingLayoutConstraint = existingLayoutConstraints.first &#123; $<span class="number">0</span> == layoutConstraint &#125;</span><br><span class="line">            <span class="comment">//如果不为空</span></span><br><span class="line">            <span class="keyword">guard</span> <span class="keyword">let</span> updateLayoutConstraint = existingLayoutConstraint <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="built_in">fatalError</span>(<span class="string">"Updated constraint could not find existing matching constraint to update: <span class="subst">\(layoutConstraint)</span>"</span>)</span><br><span class="line">            &#125;</span><br><span class="line">						<span class="comment">//就更新这个约束 先判断是否是width,height等没有相对约束的自身约束，取出要更新的属性</span></span><br><span class="line">            <span class="keyword">let</span> updateLayoutAttribute = (updateLayoutConstraint.secondAttribute == .notAnAttribute) ? updateLayoutConstraint.firstAttribute : updateLayoutConstraint.secondAttribute</span><br><span class="line">            <span class="comment">//constraintConstantTargetValueFor将得到的属性值转换成对应的格式更新到约束中</span></span><br><span class="line">            updateLayoutConstraint.constant = <span class="keyword">self</span>.constant.constraintConstantTargetValueFor(layoutAttribute: updateLayoutAttribute)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">//如果不需要更新直接启用新设置的约束</span></span><br><span class="line">        <span class="type">NSLayoutConstraint</span>.activate(layoutConstraints)</span><br><span class="line">      	<span class="comment">//加到View持有的Set中保存起来</span></span><br><span class="line">        item.add(constraints: [<span class="keyword">self</span>])</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><code>makeConstraints</code>方法的大致流程就分析完了</p>
+<h2 id="不同的构造约束的方法区别"><a href="#不同的构造约束的方法区别" class="headerlink" title="不同的构造约束的方法区别"></a>不同的构造约束的方法区别</h2><p><code>SnapKit</code>提供了三种方法构造约束，从源码的角度看看它们有什么区别吧</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//最常用的 上面以及分析过</span></span><br><span class="line"><span class="keyword">internal</span> <span class="keyword">static</span> <span class="function"><span class="keyword">func</span> <span class="title">makeConstraints</span><span class="params">(item: LayoutConstraintItem, closure: <span class="params">(<span class="number">_</span> make: ConstraintMaker)</span></span></span> -&gt; <span class="type">Void</span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> constraints = prepareConstraints(item: item, closure: closure)</span><br><span class="line">    <span class="keyword">for</span> constraint <span class="keyword">in</span> constraints &#123;</span><br><span class="line">        constraint.activateIfNeeded(updatingExisting: <span class="literal">false</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//简单粗暴 删除之前的约束 设置新的约束</span></span><br><span class="line"><span class="keyword">internal</span> <span class="keyword">static</span> <span class="function"><span class="keyword">func</span> <span class="title">remakeConstraints</span><span class="params">(item: LayoutConstraintItem, closure: <span class="params">(<span class="number">_</span> make: ConstraintMaker)</span></span></span> -&gt; <span class="type">Void</span>) &#123;</span><br><span class="line">    <span class="keyword">self</span>.removeConstraints(item: item)</span><br><span class="line">    <span class="keyword">self</span>.makeConstraints(item: item, closure: closure)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//只更新以存在的约束 如果有之前不存在的约束会抛出错误</span></span><br><span class="line"><span class="keyword">internal</span> <span class="keyword">static</span> <span class="function"><span class="keyword">func</span> <span class="title">updateConstraints</span><span class="params">(item: LayoutConstraintItem, closure: <span class="params">(<span class="number">_</span> make: ConstraintMaker)</span></span></span> -&gt; <span class="type">Void</span>) &#123;</span><br><span class="line">    <span class="keyword">guard</span> item.constraints.<span class="built_in">count</span> &gt; <span class="number">0</span> <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">self</span>.makeConstraints(item: item, closure: closure)</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> constraints = prepareConstraints(item: item, closure: closure)</span><br><span class="line">    <span class="keyword">for</span> constraint <span class="keyword">in</span> constraints &#123;</span><br><span class="line">        constraint.activateIfNeeded(updatingExisting: <span class="literal">true</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="查找公共父视图"><a href="#查找公共父视图" class="headerlink" title="查找公共父视图"></a>查找公共父视图</h2><p>这是一段时间以来有名的面试题，在OC平台的<code>Masonry</code>中有一个方法<code>mas_closestCommonSuperview</code>实现了这个算法，原因在于<code>iOS8</code>之前的版本是没有<code>NSLayoutConstraint.activate()</code>这么简便的设置约束的方法的，有些约束需要设置在自身上，有些需要设置在公共父视图上，所以<code>Masonry</code>实现了这个算法，由于<code>Swift</code> <code>iOS8</code>以上才可以使用所以就没有必要实现那个算法了。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/源码分析/" rel="tag"># 源码分析</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div class="social_share">
+            
+            
+               <div id="needsharebutton-postbottom">
+                 <span class="btn">
+                    <i class="fa fa-share-alt" aria-hidden="true"></i>
+                 </span>
+               </div>
+            
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/05/05/iOS-Audio-Unit-实践/" rel="next" title="iOS Audio Unit 实践">
+                <i class="fa fa-chevron-left"></i> iOS Audio Unit 实践
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Tommy">
+            
+              <p class="site-author-name" itemprop="name">Tommy</p>
+              <p class="site-description motion-element" itemprop="description">Be yourself.Everyone else is already taken.</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">5</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">3</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">7</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/zhaofucheng1129" target="_blank" title="GitHub" rel="external nofollow"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:zhaofucheng1129@gmail.com" target="_blank" title="E-Mail" rel="external nofollow"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#snp是什么"><span class="nav-number">1.</span> <span class="nav-text">snp是什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#makeConstraints如何执行的"><span class="nav-number">2.</span> <span class="nav-text">makeConstraints如何执行的</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#链式调用的实现"><span class="nav-number">2.1.</span> <span class="nav-text">链式调用的实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#启用约束"><span class="nav-number">2.2.</span> <span class="nav-text">启用约束</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#不同的构造约束的方法区别"><span class="nav-number">3.</span> <span class="nav-text">不同的构造约束的方法区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查找公共父视图"><span class="nav-number">4.</span> <span class="nav-text">查找公共父视图</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Tommy</span>
+
+  
+
+  
+</div>
+
+
+  
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" rel="external nofollow" href="https://hexo.io">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" rel="external nofollow" href="https://theme-next.org">NexT.Mist</a> v6.4.2</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+      <div id="needsharebutton-float">
+        <span class="btn">
+          <i class="fa fa-share-alt" aria-hidden="true"></i>
+        </span>
+      </div>
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.2"></script>
+
+
+
+  
+
+  
+    <script id="dsq-count-scr" src="https://SoftDevBlog.disqus.com/count.js" async></script>
+  
+
+  
+    <script type="text/javascript">
+      var disqus_config = function () {
+        this.page.url = 'http://softdevblog.com/2019/05/06/SnapKit源码分析/';
+        this.page.identifier = '2019/05/06/SnapKit源码分析/';
+        this.page.title = 'SnapKit源码分析';
+        };
+      function loadComments () {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://SoftDevBlog.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      }
+      
+        loadComments();
+      
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+      pbOptions = {};
+      
+          pbOptions.iconStyle = "box";
+      
+          pbOptions.boxForm = "horizontal";
+      
+          pbOptions.position = "bottomCenter";
+      
+          pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-postbottom', pbOptions);
+    
+    
+      flOptions = {};
+      
+          flOptions.iconStyle = "box";
+      
+          flOptions.boxForm = "horizontal";
+      
+          flOptions.position = "middleRight";
+      
+          flOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-float', flOptions);
+    
+  </script>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+      user-select: none;
+      outline: 0;
+    }
+
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+    }
+
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1
+    }
+
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+  <script>
+    $('.highlight').each(function (i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap')
+      $(e).after($wrap)
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function (e) {
+        var code = $(this).parent().find('.code').find('.line').map(function (i, e) {
+          return $(e).text()
+        }).toArray().join('\n')
+        var ta = document.createElement('textarea')
+        document.body.appendChild(ta)
+        ta.style.position = 'absolute'
+        ta.style.top = '0px'
+        ta.style.left = '0px'
+        ta.value = code
+        ta.select()
+        ta.focus()
+        var result = document.execCommand('copy')
+        document.body.removeChild(ta)
+        
+          if(result)$(this).text('复制成功')
+          else $(this).text('复制失败')
+        
+        $(this).blur()
+      })).on('mouseleave', function (e) {
+        var $b = $(this).find('.copy-btn')
+        setTimeout(function () {
+          $b.text('复制')
+        }, 300)
+      }).append(e)
+    })
+  </script>
+
+
+</body>
+</html>
